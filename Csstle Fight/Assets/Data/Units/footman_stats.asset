@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bab193f145425146a66698446304ecb, type: 3}
+  m_Name: footman_stats
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  nameUnit: Footman
+  description: "An ordinary soldier of the human army. \n\n<color=#c4b53f>Can attack
+    ground targets.</color>"
+  damage: 12
+  startHitPoints: 250
+  startManaPoints: 0
+  damageSpread: 2
+  speedMovement: 5
+  speedAttack: 1.35
+  speedRegenHitPoints: 4
+  speedRegenManaPoints: 0
+  typeArmor: 2
+  typeAttack: 0
+  hotKey: 102
+  resourceRequirements: []
+  packSounds: {fileID: 11400000, guid: f800b695ce7128743a12e678580b1989, type: 2}
