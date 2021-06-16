@@ -4426,7 +4426,7 @@ GameObject:
   - component: {fileID: 2119370957}
   - component: {fileID: 2119370956}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MatchManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
