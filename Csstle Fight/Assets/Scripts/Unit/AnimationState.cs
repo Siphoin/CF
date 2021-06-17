@@ -4,4 +4,5 @@
     Run,
     Attack,
     Cast,
+    Death,
     }
