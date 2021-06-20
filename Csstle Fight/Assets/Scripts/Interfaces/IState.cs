@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnitsSystem;
 
 public   interface IState
     {
@@ -15,4 +16,6 @@ public   interface IState
     /// Exit on current state
     /// </summary>
     void Exit();
+
+    void SetOwner(UnitBase target);
     }

@@ -6,26 +6,47 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Unit.States_Units
+namespace UnitsSystem.StateSystem
 {
     public class UnitStateMeleeAttack : UnitStateBase, IState
     {
         public void Enter()
         {
+
+            targetInteraction.Agent.isStopped = true;
+            targetInteraction.SetAnimationState(AnimationState.Idle);
             LogOfState("enter on state melee attack");
+            SetStateExited(false);
         }
 
         public void Exit()
         {
+
+
             LogOfState("exit on state melee attack");
+            SetStateExited(true);
+
         }
 
         public IEnumerator Update()
         {
-            while (stateExited == false)
+            while (StateExited == false)
             {
-                if (targetInteraction.TargetEnemy != null) 
+                if (targetInteraction.TargetEnemy != null)
+                {
+                    yield return new WaitForSeconds(targetInteraction.Stats.SpeedAttack);
+                    targetInteraction.SetAnimationState(AnimationState.Attack);
+                    yield return new WaitForSeconds(targetInteraction.Stats.SpeedAttack / 2);
+                    targetInteraction.SetAnimationState(AnimationState.Idle);
+                }
+
+                else
+                {
+                    yield return new WaitForSeconds(1.0f / 60.0f);
+                }
             }
+
+            yield return null;
         }
     }
 }

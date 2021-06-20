@@ -1,31 +1,36 @@
 ﻿
 using System.Collections;
 using UnityEngine;
-
-public class UnitStateIdle : UnitStateBase, IState
+namespace UnitsSystem.StateSystem
+{
+    public class UnitStateIdle : UnitStateBase, IState
     {
-        public UnitStateIdle ()
+        public UnitStateIdle()
         {
 
         }
 
-    public void Enter()
-    {
-        LogOfState("enter on state idle");
-        targetInteraction.SetAnimationState(AnimationState.Idle);
+        public void Enter()
+        {
+
+            LogOfState("enter on state idle");
+            SetStateExited(false);
+            targetInteraction.SetAnimationState(AnimationState.Idle);
+        }
+
+        public void Exit()
+        {
+            LogOfState("exit on state idle");
+            SetStateExited(true);
+
+        }
+
+        public IEnumerator Update()
+        {
+            yield return null;
+        }
+
+
     }
-
-    public void Exit()
-    {
-        LogOfState("exit on state idle");
-
-        stateExited = true;
-    }
-
-    public IEnumerator Update()
-    {
-        throw new System.NotImplementedException();
-    }
-
 
 }

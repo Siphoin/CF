@@ -1,40 +1,45 @@
 ﻿using Photon.Pun;
+using Server.Matching;
 using System.Collections;
 using UnityEngine;
+namespace UnitsSystem
+{
     public class UnitFactory : NetworkObject
     {
-      
+
         // Use this for initialization
         void Start()
         {
-        Ini();
+            Ini();
         }
 
-    public UnitBase CreateUnit (UnitBase unitPrefab, TeamColor team, Vector3 pos, Quaternion rotation, bool sceneObject = false)
-    {
-        if (!unitPrefab)
+        public UnitBase CreateUnit(UnitBase unitPrefab, TeamColor team, Vector3 pos, Quaternion rotation, bool sceneObject = false)
         {
-            throw new UnitFactoryException("unit prefab argument is null");
+            if (!unitPrefab)
+            {
+                throw new UnitFactoryException("unit prefab argument is null");
+            }
+            UnitBase unit = null;
+
+
+            GameObject gameObject = sceneObject ? PhotonNetwork.InstantiateRoomObject(unitPrefab.name, pos, rotation) : PhotonNetwork.Instantiate(unitPrefab.name, pos, rotation);
+
+            if (!GOHasComponentUnitBase(gameObject, out unit))
+            {
+                throw new UnitFactoryException($"{gameObject.name} not have component Unit Base");
+            }
+
+            unit.SetTeam(team);
+
+
+            return unit;
         }
-        UnitBase unit = null;
 
-
-        GameObject gameObject = sceneObject ? PhotonNetwork.InstantiateRoomObject(unitPrefab.name, pos, rotation) : PhotonNetwork.Instantiate(unitPrefab.name, pos, rotation);
-
-        if (!GOHasComponentUnitBase(gameObject, out unit))
+        private bool GOHasComponentUnitBase(GameObject gameObject, out UnitBase unitComponent)
         {
-            throw new UnitFactoryException($"{gameObject.name} not have component Unit Base");
+            return gameObject.TryGetComponent(out unitComponent);
         }
 
-        unit.SetTeam(team);
-
-
-        return unit;
     }
 
-    private bool GOHasComponentUnitBase (GameObject gameObject, out UnitBase unitComponent)
-    {
-        return gameObject.TryGetComponent(out unitComponent);
-    }
-
-    }
+}

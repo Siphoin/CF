@@ -1,25 +1,29 @@
 ﻿using Photon.Pun;
 using System.Collections;
 using UnityEngine;
-[RequireComponent(typeof(PhotonView))]
+namespace Server.Matching
+{
+    [RequireComponent(typeof(PhotonView))]
     public class NetworkObject : MonoBehaviour
     {
-    protected PhotonView view;
+        protected PhotonView view;
 
 
 
-     protected void Ini ()
-    {
-        if (view == null)
+        protected void Ini()
         {
-        view = PhotonView.Get(this);
+            if (view == null)
+            {
+                view = PhotonView.Get(this);
 
-        if (view == null)
-        {
-            throw new NetworkObjectException($"{name} bot have component Photon View");
-        }
+                if (view == null)
+                {
+                    throw new NetworkObjectException($"{name} bot have component Photon View");
+                }
+            }
+
         }
 
     }
 
-    }
+}
