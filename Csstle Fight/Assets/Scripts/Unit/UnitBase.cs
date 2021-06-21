@@ -13,7 +13,7 @@ namespace UnitsSystem
     [RequireComponent(typeof(PhotonTransformView))]
     public class UnitBase : TeamObject, IPunObservable, IAnimationStateController
     {
-        protected AnimationState currentAnimationState;
+        protected AnimationState currentAnimationState = AnimationState.Idle;
 
         private IState currentState;
 
@@ -77,26 +77,30 @@ namespace UnitsSystem
         #region Animations States
         public void EnterOnTriggerAnimationState(AnimationState type)
         {
-            for (int i = 0; i < animator.runtimeAnimatorController.animationClips.Length; i++)
-            {
-                animator.SetBool(animator.runtimeAnimatorController.animationClips[i].name, false);
-            }
+            DisableAllParametersAnimator();
 
             animator.SetTrigger(type.ToString());
         }
 
+        private void DisableAllParametersAnimator()
+        {
+            for (int i = 0; i < animator.parameters.Length; i++)
+            {
+                animator.SetBool(animator.runtimeAnimatorController.animationClips[i].name, false);
+            }
+        }
+
         public void SetAnimationState(AnimationState type)
         {
-            if (type != currentAnimationState)
+            if (type == currentAnimationState)
             {
-                for (int i = 0; i < animator.runtimeAnimatorController.animationClips.Length; i++)
-                {
-                    animator.SetBool(animator.runtimeAnimatorController.animationClips[i].name, false);
-                    Debug.Log(animator.runtimeAnimatorController.animationClips[i].name);
-                }
-                animator.SetBool(type.ToString(), true);
-                currentAnimationState = type;
+                return;
             }
+            DisableAllParametersAnimator();
+
+
+            animator.SetBool(type.ToString(), true);
+            currentAnimationState = type;
         }
 
         #endregion

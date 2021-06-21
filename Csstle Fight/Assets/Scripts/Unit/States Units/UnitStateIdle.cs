@@ -12,10 +12,9 @@ namespace UnitsSystem.StateSystem
 
         public void Enter()
         {
-
+            targetInteraction.SetAnimationState(AnimationState.Idle);
             LogOfState("enter on state idle");
             SetStateExited(false);
-            targetInteraction.SetAnimationState(AnimationState.Idle);
         }
 
         public void Exit()

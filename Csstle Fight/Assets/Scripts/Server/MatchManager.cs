@@ -44,7 +44,7 @@ namespace Server.Matching
         {
             Debug.Log("room joined");
             CreateTestUnit();
-            Invoke(nameof(CreateTestUnit), 0.5f);
+            Invoke(nameof(CreateTestUnit), 1f);
         }
 
         private void CreateTestUnit()
