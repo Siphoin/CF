@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f028f93014ddb444dbc4545a5502ba0e, type: 3}
-  m_Name: ArmorData_HeavyArmor
+  m_Script: {fileID: 11500000, guid: 0624d7d38c0cc1e429be34bf7ac47d57, type: 3}
+  m_Name: UnitsBllundersSettings
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  procentOfDamage: 6
+  procentProbalityBlunder: 80

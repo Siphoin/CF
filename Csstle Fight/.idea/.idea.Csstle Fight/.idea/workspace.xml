@@ -54,6 +54,7 @@
       <option name="presentableId" value="Default" />
       <updated>1624459115907</updated>
       <workItem from="1624459133157" duration="97000" />
+      <workItem from="1624600926945" duration="1137000" />
     </task>
     <servers />
   </component>
@@ -62,6 +63,17 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>

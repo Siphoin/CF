@@ -19,7 +19,8 @@ MonoBehaviour:
 
 
     <color=#c4b53f>Can attack ground targets.</color>'
-  damage: 7
+  damage: 5
+  armorIndex: 0
   startHitPoints: 125
   startManaPoints: 0
   damageSpread: 1
@@ -27,7 +28,7 @@ MonoBehaviour:
   speedAttack: 1.5
   speedRegenHitPoints: 2
   speedRegenManaPoints: 0
-  typeArmor: 2
+  typeArmor: 0
   typeAttack: 0
   hotKey: 112
   resourceRequirements: []

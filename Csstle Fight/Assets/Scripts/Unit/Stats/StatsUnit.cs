@@ -15,6 +15,9 @@ public class StatsUnit : StatsBase
     [Header("Урон")]
     [SerializeField] private ulong damage;
 
+    [Header("Базовая защита")]
+    [SerializeField] private ulong armorIndex;
+
 
     [Header("Стартовое значение здоровья")]
     [SerializeField] private ulong startHitPoints;
@@ -56,6 +59,7 @@ public class StatsUnit : StatsBase
     public string NameUnit { get => nameUnit; }
     public string Description { get => description; }
     public ulong Damage { get => damage; }
+    public ulong ArmorIndex { get => armorIndex; }
     public ulong StartHitPoints { get => startHitPoints; }
     public ulong StartManaPoints { get => startManaPoints; }
     public ulong DamageSpread { get => damageSpread; }

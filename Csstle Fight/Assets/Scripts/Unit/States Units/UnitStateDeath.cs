@@ -9,20 +9,20 @@ namespace UnitsSystem.StateSystem
         {
         }
 
-        public void Enter()
+        public override void Enter()
         {
-            SetStateExited(false);
-            targetInteraction.SetAnimationState(AnimationState.Death);
+            base.Enter();
+            targetInteraction.EnterOnTriggerAnimationState(AnimationState.Death);
+            LogOfState("enter on state death");
         }
 
-        public void Exit()
+        public override void Exit()
         {
+            base.Exit();
             LogOfState("exit on state death");
-
-            SetStateExited(true);
         }
 
-        public IEnumerator Update()
+        public override IEnumerator Update()
         {
             yield return null;
         }

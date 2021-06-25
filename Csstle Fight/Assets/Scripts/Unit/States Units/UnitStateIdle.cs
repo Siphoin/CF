@@ -10,21 +10,21 @@ namespace UnitsSystem.StateSystem
 
         }
 
-        public void Enter()
+        public override void Enter()
         {
+            base.Enter();
             targetInteraction.SetAnimationState(AnimationState.Idle);
             LogOfState("enter on state idle");
-            SetStateExited(false);
         }
 
-        public void Exit()
+        public override void Exit()
         {
+            base.Exit();
             LogOfState("exit on state idle");
-            SetStateExited(true);
 
         }
 
-        public IEnumerator Update()
+        public override IEnumerator Update()
         {
             yield return null;
         }

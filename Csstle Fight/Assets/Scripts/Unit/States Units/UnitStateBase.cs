@@ -1,10 +1,14 @@
 ﻿
+using CoroutinesSystem;
+using System.Collections;
 using UnityEngine;
 namespace UnitsSystem
 {
-    public class UnitStateBase
+    public class UnitStateBase : IState
     {
         protected UnitBase targetInteraction;
+
+        protected Coroutine updateCorotine;
         public bool StateExited { get; private set; } = false;
 
         public UnitStateBase()
@@ -33,6 +37,26 @@ namespace UnitsSystem
         protected void SetStateExited(bool status)
         {
             StateExited = status;
+        }
+
+        public virtual void Enter()
+        {
+            SetStateExited(false);
+
+            updateCorotine = Coroutines.StartRoutine(Update());
+        }
+
+        public virtual IEnumerator Update()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual void Exit()
+        {
+            SetStateExited(true);
+
+
+            Coroutines.StopRoutine(updateCorotine);
         }
     }
 

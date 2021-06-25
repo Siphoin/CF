@@ -15,9 +15,17 @@ public class AttackData : StatsBase
         new AttackDataElement(TypeArmor.Easy),
     };
 
-    public long GetProcentDamageWithArmor (int damage, TypeArmor armorType)
+    public long GetProcentDamageWithArmor (int damage, int armorCount, TypeArmor armorType)
     {
-        int procent = elements.First(a => a.TypeArmor == armorType).ProcentOfDamage;      
-        return damage * procent / 100;
+        AttackDataElement element = elements.First(a => a.TypeArmor == armorType);
+        int procent = 0;
+
+        for (int i = 0; i < armorCount; i++)
+        {
+            procent += element.ProcentOfDamage;
+        }
+
+        int resultProcent = damage * procent / 100;
+        return Mathf.Clamp(damage -= resultProcent, 1, damage);
     }
     }

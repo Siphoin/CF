@@ -1,4 +1,5 @@
-﻿using UnitsSystem.StateSystem;
+﻿using System;
+using UnitsSystem.StateSystem;
 using UnityEngine;
 
 namespace UnitsSystem
@@ -41,11 +42,18 @@ namespace UnitsSystem
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.tag == "Unit")
+            if (collision.gameObject.tag == TAG_UNIT)
             {
+                UnitBase unit = GetUnitWithCollision(collision);
+
+
                 if (TargetEnemy == null)
                 {
-                    UnitBase unit = GetUnitWithCollision(collision);
+                    AttackUnit(unit);
+                }
+
+                else if (TargetEnemy == unit)
+                {
                     AttackUnit(unit);
                 }
 
@@ -54,18 +62,35 @@ namespace UnitsSystem
 
         private void OnCollisionExit(Collision collision)
         {
-            if (collision.gameObject.tag == "Unit")
+            if (collision.gameObject.tag == TAG_UNIT)
             {
                 if (TargetEnemy != null && TargetEnemy == GetUnitWithCollision(collision))
                 {
                     if (CurrentState == StatesMap[typeof(UnitStateMeleeAttack)])
                     {
-                        SetStateByDefault();
+                        TargetEnemy.onDeath -= EnemyOfDeath;
+
+
+                        if (!TargetEnemy.IsDead)
+                        {
+                            SetStateAggresive(TargetEnemy);
+                        }
+
+                       else
+                        {
+                            SetStateByDefault();
+                        }
                     }
                 }
 
             }
 
+        }
+
+        private void EnemyOfDeath()
+        {
+            SetStateByDefault();
+            TargetEnemy.onDeath -= EnemyOfDeath;
         }
 
         private UnitBase GetUnitWithCollision (Collision collision)
@@ -89,6 +114,18 @@ namespace UnitsSystem
 
             TargetEnemy = target;
             SetState(GetState<UnitStateMeleeAttack>());
+            TargetEnemy.onDeath += EnemyOfDeath;
+        }
+
+        public override void SetStateAggresive(UnitBase target)
+        {
+            base.SetStateAggresive(target);
+
+
+            TargetEnemy = target;
+            SetState(GetState<UnitStateAggressive>());
+            TargetEnemy.onDeath += EnemyOfDeath;
+
         }
 
     }

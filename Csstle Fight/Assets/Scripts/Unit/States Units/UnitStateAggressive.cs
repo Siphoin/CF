@@ -4,26 +4,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnitsSystem;
 using UnityEngine;
 
 namespace UnitsSystem.StateSystem
 {
-    public class UnitStateMeleeMove : UnitStateBase, IState
+    class UnitStateAggressive : UnitStateBase, IState
     {
         public override void Enter()
         {
             base.Enter();
-
-
+            LogOfState("enter on state aggresive");
             targetInteraction.SetAnimationState(AnimationState.Run);
-            targetInteraction.Agent.SetDestination(targetInteraction.CurrentPoint);
-            LogOfState("enter on state melee move");
         }
 
         public override void Exit()
         {
             base.Exit();
-            LogOfState("exit on state melee move");
+            LogOfState("exit on state aggresive");
         }
 
         public override IEnumerator Update()
@@ -32,18 +30,12 @@ namespace UnitsSystem.StateSystem
             {
                 yield return new WaitForSeconds(1.0f / 60.0f);
 
-
-
-                UnitBase castedUnit = null;
-
-
-
-                if (targetInteraction.WatchingEnviroment(out castedUnit))
+                if (targetInteraction.TargetEnemy)
                 {
-                    targetInteraction.SetStateAggresive(castedUnit);
+                targetInteraction.Agent.SetDestination(targetInteraction.TargetEnemy.transform.position);
                 }
+
             }
         }
     }
-
 }
