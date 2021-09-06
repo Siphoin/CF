@@ -50,7 +50,7 @@ namespace UnitsSystem
         public event Action onDeath;
 
 
-        [Header("Данные о юните")]
+        [Header("Г„Г Г­Г­Г»ГҐ Г® ГѕГ­ГЁГІГҐ")]
         [SerializeField] private StatsUnit stats;
 
         public bool IsDead { get; private set; }
@@ -198,12 +198,7 @@ namespace UnitsSystem
 
         }
 
-        protected void SetStateByDefault()
-        {
-
-
-            SetState(GetState<UnitStateIdle>());
-        }
+        protected void SetStateByDefault() => SetState(GetState<UnitStateIdle>());
 
         public virtual void SetStateAggresive(UnitBase target)
         {
