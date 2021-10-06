@@ -62,14 +62,6 @@ namespace UnitsSystem
         public NavMeshAgent Agent { get => agent; }
         protected Dictionary<Type, IState> StatesMap { get => statesMap; }
 
-
-
-        // Start is called before the first frame update
-        void Start()
-        {
-        }
-
-
         protected void InitUnit()
         {
             if (stats == null)
